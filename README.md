@@ -4,35 +4,35 @@ This api can be used for get, post, update and deleate data files from data base
 ## Postman tests:
 
 ## Запуск сервера
-![start server](./screenshots/console_res.png)
+![start server](./img/console_res.png)
 ## Cтворення файлу з даними
 ### Запит
-![create file send](./screenshots/create_data_file_send.png)
+![create file send](./img/create_data_file_send.png)
 ### Результат
-![create file succsess](./screenshots/create_data_files_succsess.png)
+![create file succsess](./img/create_data_files_succsess.png)
 ## Вивід всих файлів з даними
 ### Запит
-![get files send](./screenshots/get_data_file_send.png)
+![get files send](./img/get_data_file_send.png)
 ### Результат
-![get_files succsess](./screenshots/get_data_files_succsess.png)
+![get_files succsess](./img/get_data_files_succsess.png)
 ## Вивід конкретного файлу з даними (по id)
 ### Запит
-![get file send](./screenshots/get_data_file_by_id_send.png)
+![get file send](./img/get_data_file_by_id_send.png)
 ### Результат
-![get file succsess](./screenshots/get_data_file_by_id_succsess.png)
+![get file succsess](./img/get_data_file_by_id_succsess.png)
 ## Оновлення файлу з даними (по id)
 ### До відновлення
-![update file before](./screenshots/update_data_file_by_id_before.png)
+![update file before](./img/update_data_file_by_id_before.png)
 ### Запит
-![update file send](./screenshots/update_data_file_by_id_send.png)
+![update file send](./img/update_data_file_by_id_send.png)
 ### Відповідь
-![update file succsess](./screenshots/update_data_file_by_id_succsess.png)
+![update file succsess](./img/update_data_file_by_id_succsess.png)
 ### Результат
-![update file res](./screenshots/update_data_file_by_id_result.png)
+![update file res](./img/update_data_file_by_id_result.png)
 ## Видалення файлу з даними (по id)
 ### Запит
-![delete file send](./screenshots/delete_data_file_by_id_send.png)
+![delete file send](./img/delete_data_file_by_id_send.png)
 ### Відповідь
-![delete file succsess](./screenshots/delete_data_file_by_id_succsess.png)
+![delete file succsess](./img/delete_data_file_by_id_succsess.png)
 ### Результат
-![delete file res](./screenshots/delete_data_file_by_id_result.png)
+![delete file res](./img/delete_data_file_by_id_result.png)
