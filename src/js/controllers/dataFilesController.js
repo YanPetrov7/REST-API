@@ -2,47 +2,34 @@ const db = require('../db_config/db_config.js');
 
 class DataFileController {
     create(req, res){   
-        const { name, description, file_csv, provider, created_by_id, dataset_id, confirmed} = req.body;
-        const query = 'INSERT INTO pdapp_datasetfile (name, description, file_csv, provider, created_by_id, dataset_id, confirmed, date_creation) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+        const { name, description, file_csv, provider, confirmed } = req.body;
+        const query = 'INSERT INTO datasetfile (name, description, file_csv, provider, confirmed, date_creation) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
         const date_creation = new Date();
 
         // Check for nesesery fields
 
         if (!(name && description && file_csv && provider)) {
-            const message = 'Name, description, file_csv, provider, created_by_id and dataset_id are nesesery fields';
+            const message = 'Name, description, file_csv, provider are nesesery fields';
             console.log(message);
             return res
                 .status(404)
                 .json({message});
         }
 
-        // Check for dublicated names
+        // Create data file
 
-        db.query('SELECT COUNT(*) AS namesCount FROM pdapp_datasetfile WHERE name=?', [name], (err, result) => {
-            const count = result[0].namesCount;
-            if(count !== 0) {
-                const message = `Data file with name:[${name}] is already existing`;
+        db.query(query, [name, description, file_csv, provider, confirmed, date_creation], (err) => {
+            if(!err){
+                const message = `Data file with name:[${name}] was added`;
                 console.log(message);
                 return res
-                    .status(404)
+                    .status(200)
                     .json({message});
+            } else {
+                return res
+                    .status(500)
+                    .json(err);
             }
-
-            // Create data file
-
-            db.query(query, [name, description, file_csv, provider, created_by_id, dataset_id, confirmed, date_creation], (err) => {
-                if(!err){
-                    const message = `Data file with name:[${name}] was added`;
-                    console.log(message);
-                    return res
-                        .status(200)
-                        .json({message});
-                } else {
-                    return res
-                        .status(500)
-                        .json(err);
-                }
-            });
         });
         
     }
@@ -51,7 +38,7 @@ class DataFileController {
 
         // Get data files
 
-        const query = 'SELECT *FROM pdapp_datasetfile';
+        const query = 'SELECT *FROM datasetfile';
         db.query(query, (err,result) => {
             if(!err){
                 const message = 'Data files were succsesfuly received';
@@ -69,7 +56,7 @@ class DataFileController {
 
     getById(req, res) {
         const id = req.params.id;
-        const query = 'SELECT *FROM pdapp_datasetfile WHERE id=?';
+        const query = 'SELECT *FROM datasetfile WHERE id=?';
 
         // Get data file
 
@@ -98,7 +85,7 @@ class DataFileController {
 
     delete(req, res){ 
         const id = req.params.id;
-        const query = 'DELETE FROM pdapp_datasetfile WHERE id=?';
+        const query = 'DELETE FROM datasetfile WHERE id=?';
 
         // Deleate data file
 
@@ -127,12 +114,12 @@ class DataFileController {
 
     update(req,res){
         const id = req.params.id; 
-        const { name, description, file_csv, provider, created_by_id, dataset_id, confirmed } = req.body;
-        const query = 'UPDATE pdapp_datasetfile SET name=?, description=?, file_csv=?, provider=?, created_by_id=?, dataset_id=?, confirmed=? where id=?';
+        const { name, description, file_csv, provider, confirmed } = req.body;
+        const query = 'UPDATE datasetfile SET name=?, description=?, file_csv=?, provider=?, confirmed=? where id=?';
 
         // Update data file
 
-        db.query(query, [name, description, file_csv, provider, confirmed, created_by_id, dataset_id, id],(err, result) => {
+        db.query(query, [name, description, file_csv, provider, confirmed, id],(err, result) => {
             // Check if data file exist
             if(result.affectedRows == 0) {
                 const message = `No data file with id:[${id}]`;
