@@ -1,5 +1,24 @@
 # REST API
-This api can be used for get, post, update and deleate data files and users from data base.
+The REST API project you described is built using Node.js and the Express.js framework. It has two main components: the ability to create data files and the ability to create users.
+
+The data files have several properties or arguments, including:
+
+created_by_id: the ID of the user who created the file
+name: the name of the file
+description: a brief description of the file
+file_csv: the CSV file that is associated with the data file
+provider: the provider of the data in the file
+confirmed: a boolean value indicating whether the data in the file has been confirmed or not
+The user information includes:
+
+password: the password for the user account
+user_name: the unique username for the user
+first_name: the user's first name
+last_name: the user's last name
+email: the user's email address
+is_staff: a boolean value indicating whether the user is a staff member or not
+is_active: a boolean value indicating whether the user's account is active or not.
+The API likely has endpoints for creating data files and creating users, as well as endpoints for retrieving and updating existing data files and users. The API may also include authentication and authorization to ensure that only authorized users are able to access certain functionality.
 
 ## Postman tests:
 
