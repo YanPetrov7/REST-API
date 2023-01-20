@@ -1,5 +1,5 @@
 # REST API
-This api can be used for get, post, update and deleate data files from data base.
+This api can be used for get, post, update and deleate data files and users from data base.
 
 ## Postman tests:
 
