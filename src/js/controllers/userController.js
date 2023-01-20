@@ -14,7 +14,6 @@ class UserController {
         const passwordRegExp = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/; 
 
         // Check for nesesery fields
-
         if (!(password && user_name && first_name && last_name)) {
             const message = 'Password, user_name, first_name, last_name are nesesery fields';
             console.log(message);
@@ -24,7 +23,6 @@ class UserController {
         }
 
         // Validate email
-
         if (emailRegExp.test(email) !== true) {
             const message = 'This email is not valid email address';
             console.log(message);
@@ -34,7 +32,6 @@ class UserController {
         }
 
         // Validate password
-
         if (passwordRegExp.test(password) !== true) {
             const message = 'This password should contain at least 8 sumbols, at least 1 number, 1 lover case sumbol and 1 upper case sumbol';
             console.log(message);
@@ -44,7 +41,6 @@ class UserController {
         }
 
         // Check for dublicated user_names
-
         db.query(queryName, [user_name], (err, result) => {
             const count = result[0].namesCount;
             if(count !== 0) {
@@ -56,7 +52,6 @@ class UserController {
             }
 
             // Create user
-
             db.query(query, [password, user_name, first_name, last_name, email, is_staff, is_active, date_join], (err) => {
                 if(!err){
                     const message = `User with name:[${user_name}] was added`;
@@ -100,10 +95,9 @@ class UserController {
         const query = 'SELECT *FROM user WHERE id=?';
 
         // Get user
-
         db.query(query, [id], (err,result) => {
             // Check if user exist
-            if (result.length == 0) {
+            if (result.length === 0) {
                 const message = `No user with id:[${id}]`;
                 console.log(message);
                 return res
@@ -129,10 +123,9 @@ class UserController {
         const query = 'DELETE FROM user WHERE id=?';
 
         // Deleate user
-
         db.query(query, [id], (err, result) => {
             // Check if user exist
-            if(result.affectedRows == 0) {
+            if(result.affectedRows === 0) {
                 const message = `No user with id:[${id}]`;
                 console.log(message);
                 return res
@@ -159,10 +152,9 @@ class UserController {
         const query = 'UPDATE user SET password=?, user_name=?, first_name=?, last_name=?, email=? where id=?';
 
         // Update user
-
         db.query(query, [password, user_name, first_name, last_name, email, id],(err, result) => {
             // Check if user exist
-            if(result.affectedRows == 0) {
+            if(result.affectedRows === 0) {
                 const message = `No user with id:[${id}]`;
                 return res
                     .status(404)
