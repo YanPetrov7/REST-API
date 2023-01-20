@@ -1,16 +1,22 @@
 const express = require('express');
-const { createDataFile, getDataFiles, getDataFile, deleteDataFile, updateDataFile } = require( '../controllers/dataFilesController.js');
+const controller = require( '../controllers/dataFilesController.js');
 
-const router = express.Router();
+const createRouter = ( controller ) => {
+    const router = express.Router();
 
-router.get('/', getDataFiles);
+    router.get('/', controller.getAll);
 
-router.post('/', createDataFile);
+    router.post('/', controller.create);
 
-router.get('/:id', getDataFile);
+    router.get('/:id', controller.getById);
 
-router.delete('/:id', deleteDataFile);     
+    router.delete('/:id', controller.delete);     
 
-router.patch('/:id', updateDataFile);
+    router.patch('/:id', controller.update);
+
+    return router;
+}
+
+const router = createRouter(controller);
 
 module.exports = router;
